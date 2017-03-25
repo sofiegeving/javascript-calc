@@ -1,133 +1,160 @@
-body {
-    background: #f0e4fa;
-    font-size: 20px;
-    font-weight: 300;
+var num1 = ""; 
+var num2 = "";
+var operator; 
+var flag = 0; 
+var display = document.getElementById("display");
+var equalTo = 0; 
+
+function setValue(number){
+	if(equalTo === 1) {
+		clearButton();
+	}
+	if(flag === 0) {
+		num1+= number; 
+		//alert(num1);
+		display.innerHTML+= number;
+	} else {
+		num2+= number; 
+		display.innerHTML+= number; 
+	}
+	if(num1.lenght > 10 || num2.lenght > 10) {
+		display.innerHTML= "Max limit of digits reached";
+	}
 }
 
-html {
-    height: 100%;
+function oppClick(numericCode) {
+	operator = numericCode; 
+	var oppString = ""; 
+	flag = 1; 
+		if (operator === 4) {
+			display.innerHTML+= "/";
+			oppString = "/";
+
+		}else if (operator === 3){
+			display.innerHTML+= "*"; 
+			oppString = "*";
+
+		}else if (operator === 2){
+			display.innerHTML+= "-"
+			oppString = "-";
+
+		}else{
+			display.innerHTML+= "+";
+			oppString = "+";
+		}
+
+		if (flag === 1){
+			display.innerHTML = num1 + oppString; 
+		}
+
+		if(flag === 1 && num1 === ""){
+			clearButton();
+		}
+
+		if(equalTo === 1){
+			clearButton();
+		}
 }
 
-/* calculator container */
-#calculator {
-    width: 440px;
-    height: auto;
-    margin-top: 40px;
-    padding-left: 0px;
-    padding-right: 0px;
-    border-radius: 10px;
-    background-color: #FFF; 
+function equalClick () {
+	equalTo = 1; 
+	num1 = parseFloat(num1);
+	num2 = parseFloat(num2);
+	var result = ""; 
+	var roundedResult = ""; 
+
+	switch(true){
+	case(operator === 1):
+		result = num1 + num2;
+		break;
+	case(operator === 2): 
+		result = num1 - num2; 
+		break; 
+	case(operator === 3): 
+		result = num1 * num2;
+		break; 
+	case(operator === 4): 
+		result = num1 / num2;
+	}
+	roundedResult = result.toFixed(4);
+	display.innerHTML = roundedResult; 
+
+		if(roundedResult === "NaN"){
+			display.innerHTML = "Not a valid calculation";
+		}
 }
 
-/* display, clear and delete buttons */
-.display {
-    background: linear-gradient(#5a99e6, #9362d5);
-    border-radius: 10px 10px 0 0;
-    width: 100%;
-    height: 240px;
-    float: none;
-    margin-top: 0px;
-    margin-left: auto;
-    position: absolute;
-    font-family: 'Open Sans', sans-serif;
-    color: white;
-    font-size: 30px;
-
+function clearButton(){
+	num1 = ""; 
+	num2 = ""; 
+	flag = 0; 
+	display.innerHTML = "";
+	equalTo = 0;
 }
 
-#clear {
-    background-color: #1C1C1C;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    letter-spacing: 0.3em;
-    color: white;
-    height: 50px;
-    width: 220px;
-    float: left;
-    margin-left: auto;
-    position: absolute;
+function backspace(){
+	var temp1 = ""; 
+	var temp2 = ""; 
+	if(equalTo === 1){
+		clearButton();
+	}
+
+	if(flag === 0){
+		temp1 = num1.substring(0, num1.lenght-1);
+		//alert(temp1);
+		display.innerHTML = temp1;
+		num1 = temp1; 
+	}
+
+	if(flag === 1){
+		display.innerHTML = num1; 
+		flag = 0;
+	}
+
+	if(num2 !== ""){
+		temp2 = num2.substring(0, num2.lenght-1);
+		display.innerHTML = num1 + operator + num2; 
+		num2 = temp2; 
+		flag = 1;
+		setOppString();
+	}
 }
 
-#clear:hover {
-    background-color: #141414;
+function setDecimal(){
+	if(flag === 0){
+		if(num1 === ""){
+			num1 = "0.";
+			display.innerHTML = num1;
+		}
+
+		if(num1.indexOf('.') === -1){
+			num1 += ".";
+			display.innerHTML = num1; 
+		}
+	}
+
+	if(flag === 1){
+		if(num2 === ""){
+			num2 = "0."; 
+			display.innerHTML += num2; 
+		}
+
+		if(num2.indexOf('.') === -1){
+			num2 += ".";
+			display.innerHTML = num1 + operator + num2;
+			setOppString();
+		}
+	}
 }
 
-#backspace {
-    background-color: #1C1C1C;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    letter-spacing: 0.3em;
-    color: white;
-    height: 50px;
-    width: 220px;
-    float: right;
-    margin-right: auto;
+function setOppString(){
+		if (operator === 1) {
+			display.innerHTML = num1 + "+" + num2; 
+		} else if (operator === 2){
+			display.innerHTML = num1 + "-" + num2; 
+		} else if (operator === 3){
+			display.innerHTML = num1 + "*" + num2; 
+		} else if (operator === 4){
+			display.innerHTML = num1 + "/" + num2;
+		}
 }
-
-#backspace:hover {
-    background-color: #141414;
-}
-
-.clearBackspace {
-    margin-top: 220px;
-    width: 100%;
-}
-
-/* numbers row */
-#numbers-row {
-}
-
-/* buttons */
-button {
-    width: 110px;
-    height: 100px;
-    border: none;
-    background-color: #1C1C1C;
-    color: #FFF;
-    border: solid 1px;
-    border-color: #303030;
-    font-family: 'Open Sans', sans-serif;
-    margin: 0 auto;
-    float: left; 
-    position: relative;
-}
-
-button:hover {
-    background-color: #141414;
-    color: #FFF;
-    cursor: pointer;
-}
-
-button:focus {
-    outline: 0;
-}
-
-#pluss {
-    border-radius: 0 0 10px 0;
-}
-
-#zerobtn { 
-    border-radius: 0 0 0 10px;
-
-}
-
-.opp {
-    background-color: #1C1C1C;
-    color: white;
-}
-
-.decimal:hover {
-    background-color: #FFFFFF;
-    color: #888888;
-}
-
-.operator:hover {
-    background-color: #FFFFFF;
-    color: #888888;
-}
-
-.eval:hover {
-    background-color: #FFFFFF;
-    color: #888888;
-}
-
