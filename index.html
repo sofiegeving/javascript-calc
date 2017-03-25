@@ -9,7 +9,7 @@
 
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Calculator mm</title>
+    <title>JS Calculator</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -17,26 +17,22 @@
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
 
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+
 </head>
 
 <body>
-
-    <!-- Header  -->
-
-    <div class="header">
-        <h1>JavaScript Calculator</h1>
-    </div> 
-    <!-- end of header div -->
     <div class="container" id="calculator">
         <!--  display div -->
-         <div class="row col-md-12 display" id="display">
+        <div class="row col-md-12 display" id="display">
         </div> 
         <!-- end of row-->
         <!-- div with clear and del buttons -->
         <div class="row">
             <div class="col-md-12 clearBackspace">
-                <button class="Backspace" id="backspace" onclick="backspace()">Del</button>
-                <button class="clear-button" onclick="clearButton()" id="clear">C</button>
+                <button class="Backspace" id="backspace" onclick="backspace()">DELETE</button>
+                <button class="clear-button" onclick="clearButton()" id="clear">CLEAR</button>
             </div> 
             <!-- end of col-md-12 -->
         </div> 
@@ -44,31 +40,31 @@
         <!-- numbers and operators -->
         <div class="row" id="numbers-row">
             <div class="col-md-12">
-                <button class="num-button" id="button" onclick="setValue(7)">7</button>
-                <button class="num-button" onclick="setValue(8)">8</button>
-                <button class="num-button" onclick="setValue(9)">9</button>
-                <button class="opp" onclick="oppClick(4)">/</button>
+                <button class="num-button mathBtn" id="button" onclick="setValue(7)">7</button>
+                <button class="num-button mathBtn" onclick="setValue(8)">8</button>
+                <button class="num-button mathBtn" onclick="setValue(9)">9</button>
+                <button class="opp mathBtn" onclick="oppClick(4)">/</button>
             </div>
             <!-- end of col-md-12 -->
             <div class="col-md-12">
-                <button class="num-button" onclick="setValue(4);">4</button>
-                <button class="num-button" onclick="setValue(5)">5</button>
-                <button class="num-button" onclick="setValue(6)">6</button>
-                <button class="opp" onclick="oppClick(3)">x</button>
+                <button class="num-button mathBtn" onclick="setValue(4);">4</button>
+                <button class="num-button mathBtn" onclick="setValue(5)">5</button>
+                <button class="num-button mathBtn" onclick="setValue(6)">6</button>
+                <button class="opp mathBtn" onclick="oppClick(3)">x</button>
             </div>
             <!-- end of col-md-12 -->
             <div class="col-md-12">
-                <button class="num-button" onclick="setValue(1);">1</button>
-                <button class="num-button" onclick="setValue(2)">2</button>
-                <button class="num-button" onclick="setValue(3)">3</button>
-                <button class="opp" id="minus" onclick="oppClick(2)">-</button>
+                <button class="num-button mathBtn" onclick="setValue(1);">1</button>
+                <button class="num-button mathBtn" onclick="setValue(2)">2</button>
+                <button class="num-button mathBtn" onclick="setValue(3)">3</button>
+                <button class="opp mathBtn" id="minus" onclick="oppClick(2)">-</button>
             </div>
             <!-- end of col-md-12 -->
             <div class="col-md-12">
-                <button class="num-button" onclick="setValue(0)">0</button>
-                <button class="opp" id="decimal" onclick="setDecimal('.')">.</button>
-                <button class="num-button" onclick="equalClick()">=</button>
-                <button class="opp" onclick="oppClick(1)">+</button>
+                <button class="num-button" id="zerobtn" onclick="setValue(0)">0</button>
+                <button class="opp mathBtn" id="decimal" onclick="setDecimal('.')">.</button>
+                <button class="num-button mathBtn" onclick="equalClick()">=</button>
+                <button class="opp mathBtn" id="pluss" onclick="oppClick(1)">+</button>
             </div>
              <!-- end of col-md-12 -->
         </div> 
