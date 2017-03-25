@@ -158,7 +158,3 @@ function setOppString(){
 			display.innerHTML = num1 + "/" + num2;
 		}
 }
-
-
-
-
